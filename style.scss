@@ -1,0 +1,110 @@
+html body {
+    background: #f1faee;
+    .bg-img {
+        position: absolute;
+        z-index: -1;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 200px;
+        height: 200px;
+    }
+    h1 {
+        color: #14213d;
+    }
+}
+
+.spinner {
+    position: fixed;
+    left: auto;
+}
+
+div {
+    .hidden {
+        visibility: hidden;
+    }
+}
+
+.quote {
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 28rem;
+    height: auto;
+    max-height: auto;
+    background: #ffffff;
+    border-radius: 3px;
+    padding: 40px 50px;
+    .quote-icon {
+        padding-right: 10px;
+    }
+    .quote_text {
+        font-size: 1.2rem;
+        font-weight: 500;
+        .intro_pic {
+            width: 10.625rem;
+            height: 7rem;
+        }
+        #highlightTxt {
+            color: red;
+        }
+    }
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .button {
+        padding: 15px 40px;
+        border: none;
+        border-radius: 5px;
+        background-color: #fff;
+        font-size: 1.2rem;
+        color: #03071e;
+        font-weight: 500;
+        border-radius: 100px;
+        transition: all .2s;
+        a {
+            text-decoration: none;
+            color: unset;
+            text-align: center;
+        }
+    }
+    .tweet {
+        padding: 15px 40px;
+    }
+}
+
+@media(min-width: 768px) {
+    .controls {
+        margin-top: 100px;
+        top: 45%;
+        left: 50%;
+        right: 50%;
+    }
+}
+
+@media(max-width: 767px) {
+    body {
+        .bg-img {
+            display: none;
+        }
+        header {
+            h1 {
+                font-size: 1.4em;
+            }
+        }
+    }
+    .controls {
+        margin-top: 100px;
+        top: 45%;
+        left: 50%;
+        right: 50%;
+    }
+}

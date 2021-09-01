@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Machine</title>
+    <!--  -->
+    <link rel="stylesheet" href="style.css">
+    <!--  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!--  -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <img src="./D trumph/trump-0.png" alt="Donald Trump Picture" class="bg-img">
+        <header class="d-flex justify-content-center">
+            <h1 class="mb-4">Random Trump Quote Machine</h1>
+        </header>
+        <section class="quote">
+            <i class="fas fa-quote-left quote-icon"></i>
+            <div class="spinner-border spinner hidden" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="quote_text">
+                <img class="intro_pic" src="https://media.giphy.com/media/JoadRxX81qBXAlNRF8/giphy.gif?cid=ecf05e470kbf11or3el3dx7h3m26o2yrsdy8ae3wu3srip5d&rid=giphy.gif&ct=g" alt="this slowpoke moves" />
+                <br> Click <span id="highlightTxt">Next Button</span> to New Quote
+
+                <!-- <br>
+                <span class="author">- Trumph</span> -->
+
+            </div>
+
+        </section>
+
+    </div>
+    <section class="controls">
+        <button class="tweet button me-4"><a href="https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=">tweet</a></button>
+        <button class="next button">next</button>
+    </section>
+    <script src="script.js"></script>
+</body>
+
+</html>

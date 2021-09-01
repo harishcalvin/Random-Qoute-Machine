@@ -1,0 +1,126 @@
+html body {
+  background: #f1faee;
+}
+
+html body .bg-img {
+  position: absolute;
+  z-index: -1;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 200px;
+}
+
+html body h1 {
+  color: #14213d;
+}
+
+.spinner {
+  position: fixed;
+  left: auto;
+}
+
+div .hidden {
+  visibility: hidden;
+}
+
+.quote {
+  display: inline-block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 auto;
+  width: 28rem;
+  height: auto;
+  max-height: auto;
+  background: #ffffff;
+  border-radius: 3px;
+  padding: 40px 50px;
+}
+
+.quote .quote-icon {
+  padding-right: 10px;
+}
+
+.quote .quote_text {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.quote .quote_text .intro_pic {
+  width: 10.625rem;
+  height: 7rem;
+}
+
+.quote .quote_text #highlightTxt {
+  color: red;
+}
+
+.controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: fixed;
+}
+
+.controls button:hover {
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.controls .button {
+  padding: 15px 40px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 1.2rem;
+  color: #03071e;
+  font-weight: 500;
+  border-radius: 100px;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.controls .button a {
+  text-decoration: none;
+  color: unset;
+  text-align: center;
+}
+
+.controls .tweet {
+  padding: 15px 40px;
+}
+
+@media (min-width: 768px) {
+  .controls {
+    margin-top: 100px;
+    top: 45%;
+    left: 50%;
+    right: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  body .bg-img {
+    display: none;
+  }
+  body header h1 {
+    font-size: 1.4em;
+  }
+  .controls {
+    margin-top: 100px;
+    top: 45%;
+    left: 50%;
+    right: 50%;
+  }
+}
+/*# sourceMappingURL=style.css.map */
