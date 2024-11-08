@@ -73,6 +73,15 @@ const createQuoteGenerator = () => {
     }, 300);
   };
 
+  const displayQuote = () => {
+    // Initial setup
+    elements.quoteText.textContent =
+      "Click the 'Generate Quote' button below to start";
+
+    const quoteGenerator = createQuoteGenerator();
+    quoteGenerator.init();
+  };
+
   const init = () => {
     elements.nextBtn.addEventListener("click", handleGetQuote);
     elements.tweetBtn.addEventListener("click", handleTweet);
@@ -81,10 +90,9 @@ const createQuoteGenerator = () => {
   return {
     init,
     getNewQuote: handleGetQuote,
+    displayQuote,
   };
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  const quoteGenerator = createQuoteGenerator();
-  quoteGenerator.init();
-});
+const quoteApp = createQuoteGenerator();
+quoteApp.displayQuote();
