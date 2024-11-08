@@ -2,6 +2,7 @@ const createQuoteGenerator = () => {
   const API_URL = "https://api.whatdoestrumpthink.com/api/v1/quotes/random";
   const TOTAL_IMAGES = 6;
   let currentImageIndex = 0;
+  let isFirstQuote = true;
 
   const elements = {
     quoteText: document.querySelector(".quote-text"),
@@ -23,6 +24,11 @@ const createQuoteGenerator = () => {
       updateQuote(message);
       updateColors();
       updateBackgroundImage();
+
+      if (isFirstQuote) {
+        celebrateQuote();
+        isFirstQuote = false;
+      }
     } catch (error) {
       console.error("Error fetching quote:", error);
       elements.quoteText.textContent =
@@ -74,7 +80,6 @@ const createQuoteGenerator = () => {
   };
 
   const displayQuote = () => {
-    // Initial setup
     elements.quoteText.textContent =
       "Click the 'Generate Quote' button below to start";
 
@@ -85,6 +90,15 @@ const createQuoteGenerator = () => {
   const init = () => {
     elements.nextBtn.addEventListener("click", handleGetQuote);
     elements.tweetBtn.addEventListener("click", handleTweet);
+  };
+
+  const celebrateQuote = () => {
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ["#B31942", "#0A3161", "#FFD700"],
+    });
   };
 
   return {

@@ -10,24 +10,42 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <!-- Google Fonts -->
+    <!-- Google Fonts - Added a fun display font -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Righteous&display=swap"
       rel="stylesheet"
     />
   </head>
 
   <body>
-    <div class="background-overlay"></div>
+    <!-- confetti -->
+    <div id="confetti-container"></div>
+
     <img src="./assets/trump-0.png" alt="Trump Background" class="bg-img" />
+
+    <!-- Banner -->
+    <div class="victory-banner">
+      <span>🎉 Victory 2024 🎉</span>
+    </div>
 
     <main class="container">
       <header>
-        <h1>Trump Quote Generator</h1>
+        <div class="title-wrapper">
+          <i class="fas fa-star star-icon left"></i>
+          <h1>Presidential Trump Quote Generator</h1>
+
+          <i class="fas fa-star star-icon right"></i>
+        </div>
+        <div class="subtitle">Making Quotes Great Again!</div>
       </header>
 
       <div class="quote-container">
         <div class="quote-box">
+          <!-- trophy icon -->
+          <div class="trophy-icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+
           <div class="quote-content">
             <i class="fas fa-quote-left quote-icon"></i>
             <div class="spinner hidden">
@@ -52,6 +70,8 @@
       </div>
     </main>
 
+    <!-- confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
