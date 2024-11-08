@@ -1,126 +1,241 @@
-html body {
-  background: #f1faee;
+:root {
+  --primary-color: #1da1f2;
+  --secondary-color: #14171a;
+  --background-color: #f5f8fa;
+  --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
 }
 
-html body .bg-img {
-  position: absolute;
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--background-color);
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 1rem;
+}
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(29, 161, 242, 0.1), rgba(20, 23, 26, 0.1));
+  z-index: -2;
+}
+
+.bg-img {
+  position: fixed;
+  top: 50%;
+  right: 5%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  max-width: 300px;
+  opacity: 0.2;
   z-index: -1;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 200px;
-  height: 200px;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
-html body h1 {
-  color: #14213d;
+.bg-img.fade-out {
+  opacity: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+.quote-container {
+  width: 100%;
+}
+
+.quote-box {
+  background: white;
+  border-radius: 15px;
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+}
+
+.quote-content {
+  position: relative;
+  min-height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.quote-icon {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--primary-color);
+  margin-right: 1rem;
+}
+
+.quote-text {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--secondary-color);
+}
+
+.quote-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+}
+
+.btn i {
+  font-size: 1.1rem;
+}
+
+.btn:hover {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+}
+
+.tweet-btn {
+  background: var(--primary-color);
+  color: white;
+}
+
+.next-btn {
+  background: var(--secondary-color);
+  color: white;
 }
 
 .spinner {
-  position: fixed;
-  left: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
-div .hidden {
-  visibility: hidden;
+.spinner.hidden {
+  display: none;
 }
 
-.quote {
-  display: inline-block;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin: 0 auto;
-  width: 28rem;
-  height: auto;
-  max-height: auto;
-  background: #ffffff;
-  border-radius: 3px;
-  padding: 40px 50px;
+.spinner-ring {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
 }
 
-.quote .quote-icon {
-  padding-right: 10px;
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
-.quote .quote_text {
-  font-size: 1.2rem;
-  font-weight: 500;
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
-.quote .quote_text .intro_pic {
-  width: 10.625rem;
-  height: 7rem;
-}
-
-.quote .quote_text #highlightTxt {
-  color: red;
-}
-
-.controls {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  position: fixed;
-}
-
-.controls button:hover {
-  -webkit-transform: translateY(-3px);
-          transform: translateY(-3px);
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.controls .button {
-  padding: 15px 40px;
-  border: none;
-  border-radius: 5px;
-  background-color: #fff;
-  font-size: 1.2rem;
-  color: #03071e;
-  font-weight: 500;
-  border-radius: 100px;
-  -webkit-transition: all .2s;
-  transition: all .2s;
-}
-
-.controls .button a {
-  text-decoration: none;
-  color: unset;
-  text-align: center;
-}
-
-.controls .tweet {
-  padding: 15px 40px;
-}
-
-@media (min-width: 768px) {
-  .controls {
-    margin-top: 100px;
-    top: 45%;
-    left: 50%;
+@media (max-width: 768px) {
+  .bg-img {
     right: 50%;
+    -webkit-transform: translate(50%, -50%);
+            transform: translate(50%, -50%);
+    max-width: 200px;
+    opacity: 0.1;
+  }
+  .quote-actions {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .quote-actions .btn {
+    width: 100%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
 }
 
-@media (max-width: 767px) {
-  body .bg-img {
-    display: none;
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
   }
-  body header h1 {
-    font-size: 1.4em;
+  .quote-box {
+    padding: 1rem;
   }
-  .controls {
-    margin-top: 100px;
-    top: 45%;
-    left: 50%;
-    right: 50%;
+  .bg-img {
+    max-width: 150px;
   }
 }
 /*# sourceMappingURL=style.css.map */

@@ -1,51 +1,90 @@
-const d = document;
-const spinner = d.querySelector(".spinner");
-const btnNext = d.querySelector(".next");
-const btnTweet = d.querySelector(".tweet");
-const quotes = "https://api.whatdoestrumpthink.com/api/v1/quotes/random";
-const quoteDisplay = d.querySelector(".quote_text");
-const quoteIcon = d.querySelector(".quote-icon");
-const bcgImg = d.querySelector(".bg-img");
-let images = [
-  "D trumph/trump-0.png",
-  "D trumph/trump-0.png",
-  "D trumph/trump-0.png",
-  "D trumph/trump-0.png",
-  "D trumph/trump-0.png",
-];
-let randNum = Math.floor(Math.random() * images.length);
+const createQuoteGenerator = () => {
+  const API_URL = "https://api.whatdoestrumpthink.com/api/v1/quotes/random";
+  const TOTAL_IMAGES = 6;
+  let currentImageIndex = 0;
 
-btnNext.addEventListener("click", getQuote);
-async function getQuote() {
-  spinner.classList.remove("hidden");
-  quoteDisplay.classList.add("hidden");
-  btnNext.disabled === true;
-  try {
-    const response = await fetch(quotes);
-    if (!response.ok) {
-      throw Error(response.statusText);
+  const elements = {
+    quoteText: document.querySelector(".quote-text"),
+    nextBtn: document.querySelector(".next-btn"),
+    tweetBtn: document.querySelector(".tweet-btn"),
+    spinner: document.querySelector(".spinner"),
+    quoteIcon: document.querySelector(".quote-icon"),
+    bgImage: document.querySelector(".bg-img"),
+  };
+
+  const handleGetQuote = async () => {
+    toggleLoadingState(true);
+
+    try {
+      const response = await fetch(API_URL);
+      if (!response.ok) throw new Error("Failed to fetch quote");
+
+      const { message } = await response.json();
+      updateQuote(message);
+      updateColors();
+      updateBackgroundImage();
+    } catch (error) {
+      console.error("Error fetching quote:", error);
+      elements.quoteText.textContent =
+        "Failed to load quote. Please try again.";
+    } finally {
+      toggleLoadingState(false);
     }
-    const json = await response.json();
-    displayQuote(json.message);
-    const tweetButton = document.querySelector(".tweet a");
-    tweetButton.href = `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${encodeURIComponent(
-      json.message
-    )}`;
-  } catch {
-    alert("failed to load new Quote");
-  } finally {
-    btnNext.disabled === false;
-    spinner.classList.add("hidden");
-    quoteDisplay.classList.remove("hidden");
-    const r = Math.floor(Math.random() * 255);
-    const g = Math.floor(Math.random() * 255);
-    const b = Math.floor(Math.random() * 255);
-    const newIconColor = `rgb(${r}, ${g}, ${b})`;
-    quoteIcon.style.color = newIconColor;
-  }
-}
+  };
 
-function displayQuote(randomQuote) {
-  const quoteText = d.querySelector(".quote_text");
-  quoteText.textContent = randomQuote;
-}
+  const handleTweet = () => {
+    const quote = elements.quoteText.textContent;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      quote
+    )}`;
+    window.open(twitterUrl, "_blank");
+  };
+
+  const updateQuote = (quote) => {
+    elements.quoteText.textContent = quote;
+  };
+
+  const toggleLoadingState = (isLoading) => {
+    elements.spinner.classList.toggle("hidden", !isLoading);
+    elements.quoteText.style.visibility = isLoading ? "hidden" : "visible";
+    elements.nextBtn.disabled = isLoading;
+  };
+
+  const updateColors = () => {
+    const randomColor = `hsl(${Math.random() * 360}, 70%, 50%)`;
+    elements.quoteIcon.style.color = randomColor;
+  };
+
+  const getRandomImageIndex = () => {
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * (TOTAL_IMAGES + 1));
+    } while (newIndex === currentImageIndex);
+    currentImageIndex = newIndex;
+    return newIndex;
+  };
+
+  const updateBackgroundImage = () => {
+    const newIndex = getRandomImageIndex();
+    elements.bgImage.classList.add("fade-out");
+    setTimeout(() => {
+      elements.bgImage.src = `./assets/trump-${newIndex}.png`;
+      elements.bgImage.classList.remove("fade-out");
+    }, 300);
+  };
+
+  const init = () => {
+    elements.nextBtn.addEventListener("click", handleGetQuote);
+    elements.tweetBtn.addEventListener("click", handleTweet);
+  };
+
+  return {
+    init,
+    getNewQuote: handleGetQuote,
+  };
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const quoteGenerator = createQuoteGenerator();
+  quoteGenerator.init();
+});

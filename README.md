@@ -1,2 +1,3 @@
 # Random-Qoute-Machine
-## click "next" button to get new D trump funny quotes
+
+## click "next" button to get new assets funny quotes
