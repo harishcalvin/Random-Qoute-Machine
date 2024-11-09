@@ -4,6 +4,11 @@ const createQuoteGenerator = () => {
   let currentImageIndex = 0;
   let isFirstQuote = true;
 
+  const CREDITS_CONFIG = {
+    twitter: "@harish_calvin",
+    previewUrl: window.location.href,
+  };
+
   const elements = {
     quoteText: document.querySelector(".quote-text"),
     nextBtn: document.querySelector(".next-btn"),
@@ -40,9 +45,21 @@ const createQuoteGenerator = () => {
 
   const handleTweet = () => {
     const quote = elements.quoteText.textContent;
+
+    const getCredits = (quoteLength) => {
+      if (quoteLength > 180) {
+        // minimal credits
+        return `\n\n🔗 ${CREDITS_CONFIG.previewUrl}\n#JavaScript`;
+      }
+      // full credits
+      return `\n- D Trump\n💻 By @${CREDITS_CONFIG.twitter}\n🔗 ${CREDITS_CONFIG.previewUrl}\n#JavaScript`;
+    };
+
+    const credits = getCredits(quote.length);
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      quote
+      quote + credits
     )}`;
+
     window.open(twitterUrl, "_blank");
   };
 
@@ -82,9 +99,6 @@ const createQuoteGenerator = () => {
   const displayQuote = () => {
     elements.quoteText.textContent =
       "Click the 'Generate Quote' button below to start";
-
-    const quoteGenerator = createQuoteGenerator();
-    quoteGenerator.init();
   };
 
   const init = () => {
@@ -103,10 +117,8 @@ const createQuoteGenerator = () => {
 
   return {
     init,
-    getNewQuote: handleGetQuote,
-    displayQuote,
   };
 };
 
 const quoteApp = createQuoteGenerator();
-quoteApp.displayQuote();
+quoteApp.init();
