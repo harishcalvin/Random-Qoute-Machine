@@ -3,6 +3,7 @@ const createQuoteGenerator = () => {
   const TOTAL_IMAGES = 6;
   let currentImageIndex = 0;
   let isFirstQuote = true;
+  let hasGeneratedQuote = false;
 
   const CREDITS_CONFIG = {
     twitter: "@harish_calvin",
@@ -27,6 +28,7 @@ const createQuoteGenerator = () => {
 
       const { message } = await response.json();
       updateQuote(message);
+      hasGeneratedQuote = true;
       updateColors();
       updateBackgroundImage();
 
@@ -38,20 +40,29 @@ const createQuoteGenerator = () => {
       console.error("Error fetching quote:", error);
       elements.quoteText.textContent =
         "Failed to load quote. Please try again.";
+      hasGeneratedQuote = false;
     } finally {
       toggleLoadingState(false);
     }
   };
 
   const handleTweet = () => {
-    const quote = elements.quoteText.textContent;
+    if (!hasGeneratedQuote) {
+      const welcomeTweetText =
+        "🇺🇸 Check out this awesome Trump Quote Generator!";
+      const credits = `\n💻 By @${CREDITS_CONFIG.twitter}\n🔗 ${CREDITS_CONFIG.previewUrl}\n#trumpquotes #trump #donaldtrump #JavaScript`;
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+        welcomeTweetText + credits
+      )}`;
+      window.open(twitterUrl, "_blank");
+      return;
+    }
 
+    const quote = elements.quoteText.textContent;
     const getCredits = (quoteLength) => {
       if (quoteLength > 180) {
-        // minimal credits
         return `\n\n🔗 ${CREDITS_CONFIG.previewUrl}\n#JavaScript`;
       }
-      // full credits
       return `\n- D Trump\n💻 By @${CREDITS_CONFIG.twitter}\n🔗 ${CREDITS_CONFIG.previewUrl}\n#JavaScript`;
     };
 
@@ -59,7 +70,6 @@ const createQuoteGenerator = () => {
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
       quote + credits
     )}`;
-
     window.open(twitterUrl, "_blank");
   };
 
@@ -94,11 +104,6 @@ const createQuoteGenerator = () => {
       elements.bgImage.src = `./assets/trump-${newIndex}.png`;
       elements.bgImage.classList.remove("fade-out");
     }, 300);
-  };
-
-  const displayQuote = () => {
-    elements.quoteText.textContent =
-      "Click the 'Generate Quote' button below to start";
   };
 
   const init = () => {
