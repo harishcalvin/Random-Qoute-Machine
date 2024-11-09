@@ -4,4 +4,4 @@
 
 ## Preview
 
-![image](./assets/random-quote-machine-preview-1.png)
+![image](./assets/random-quote-machine-preview-2.png)
